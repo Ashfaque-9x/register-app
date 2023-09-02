@@ -12,7 +12,7 @@ pipeline {
         DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-	JENKINS-API-TOKEN = "${JENKINS-API-TOKEN}"
+	JENKINS_API_TOKEN = "${JENKINS_API_TOKEN}"
     }
     
     stages{
@@ -79,7 +79,7 @@ pipeline {
        stage("Trigger CD Pipeline") {
             steps {
                 script {
-                    sh "curl -v -k --user admin:${JENKINS-API-TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://43.205.120.95:8080/job/gitops-register-app/buildWithParameters?token=gitops-token'"
+                    sh "curl -v -k --user admin:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://43.205.120.95:8080/job/gitops-register-app/buildWithParameters?token=gitops-token'"
                 }
             }
        }
