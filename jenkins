@@ -1,0 +1,13 @@
+pipeline {
+  agent { label 'Jenkins-Agent' }
+  tools {
+    jdk 'java17'
+    mavan 'Maven3'
+  }
+stages{
+  stage("cleanup workspace"){
+    steps {
+    cleanWs()
+    }
+}
+
