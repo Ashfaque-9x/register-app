@@ -4,10 +4,30 @@ pipeline {
     jdk 'java17'
     mavan 'Maven3'
   }
-stages{
-  stage("cleanup workspace"){
+  stages{
+    stage("cleanup workspace"){
     steps {
     cleanWs()
     }
+  }
+  
+    stage("checkout from SCM"){
+      steps{
+        git branch: 'new-jen', credentialsID: 'github', url: 'https://github.com/MadhushreePra/register-app.git'
+      }
+    }
+    stage("Build application"){
+        steps {
+          sh "mvn clean package"
+        }
 }
+
+stage("test Application"){
+    steps {
+          ssh "mvn test"
+        }
+    }
+  }
+}
+      
 
