@@ -13,7 +13,7 @@ pipeline {
   
     stage("checkout from SCM"){
       steps{
-        git branch: 'new-jen', credentialsID: 'github', url: 'https://github.com/MadhushreePra/register-app.git'
+        git branch: 'new-jen', credentialsId: 'github', url: 'https://github.com/MadhushreePra/register-app.git'
       }
     }
     stage("Build application"){
@@ -24,7 +24,7 @@ pipeline {
 
 stage("test Application"){
     steps {
-          ssh "mvn test"
+          sh "mvn test"
         }
     }
   }
