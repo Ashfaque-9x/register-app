@@ -40,7 +40,7 @@ pipeline {
        }
        stage("SonarQube"){
            steps {
-                sh 'sleep 15'
+                sh 'sleep 16'
            }
        }
        stage("Build & Push Docker Image") {
