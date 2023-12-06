@@ -38,6 +38,11 @@ pipeline {
                  sh "mvn test"
            }
        }
+       stage("SonarQube"){
+           steps {
+                sh 'sleep 300'
+           }
+       }
        stage("Build & Push Docker Image") {
             steps {
                 script {
