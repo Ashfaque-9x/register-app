@@ -27,7 +27,7 @@ pipeline{
                 sh 'mvn test'
             }
         }
-        stage('Sonarqube '){
+        stage('Sonarqube Analysis'){
             steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'jenkins-sonarqube-token') {
@@ -41,6 +41,11 @@ pipeline{
                 script{
                     waitForQualityGate abortPipeline: false, credentialsId: 'jenkins-sonarqube-token'
                 }
+            }
+        }
+        stage('mvn build'){
+            steps{
+                sh 'mvn clean install'
             }
         }
     }
