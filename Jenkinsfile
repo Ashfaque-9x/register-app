@@ -1,30 +1,10 @@
-pipline{
-    agent { lable 'Jenkins-Agent'}
-
-    tools{
-        jdk 'Java17'
-        maven 'Maven3'
-    }
+pipeline{
+    agend { lable ' Jenkins-Agent' }
 
     stages{
-        stage('Cleanup Workspace'){
+        stage("Checkout from SCM"){
             steps{
-                cleanWs()
-            }
-        }
-        stage('SCM Checkout'){
-            steps{
-                git branch: 'main', credentialsId: 'gitpass', url: 'https://github.com/AASAITHAMBI57/register-app-ass.git'
-            }
-        }
-        stage('mvn compile'){
-            steps {
-            sh 'mvn clean compile' 
-            }
-        }
-        stage('mvn test'){
-            steps {
-            sh 'mvn test' 
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitPass', url: 'https://github.com/AASAITHAMBI57/register-app-ass.git']])
             }
         }
     }
