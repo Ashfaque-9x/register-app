@@ -1,5 +1,5 @@
 pipeline{
-    agent { lable ' Jenkins-Agent' }
+    agent { label ' Jenkins-Agent' }
 
     stages{
         stage("Checkout from SCM"){
